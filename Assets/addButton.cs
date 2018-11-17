@@ -18,4 +18,9 @@ public class addButton : MonoBehaviour {
         inventory.addItem(item.text, int.Parse(amount.text), new Color(Random.value / 2f, Random.value / 2f, Random.value / 2f, 1f));
         menuPanel.SetActive(false);
 	}
+
+    public void openMenu() {
+        menuPanel.SetActive(true);
+ 
+    }
 }

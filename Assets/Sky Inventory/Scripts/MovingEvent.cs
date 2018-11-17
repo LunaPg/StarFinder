@@ -5,14 +5,23 @@ using System.Collections;
 public class MovingEvent : MonoBehaviour {
 
 	private ElementalInventory inventory;
+    private addButton panel;
 
 	void Start () {
 		if (transform.tag == "Cell") {
-			GetComponent<Button> ().onClick.AddListener (delegate{moveHere();});
-		} else {
+            GetComponent<Button>().onClick.AddListener(delegate { openMenu(); });
+            //GetComponent<Button> ().onClick.AddListener (delegate{moveHere();});
+        } else {
 			GetComponent<Button> ().onClick.AddListener (delegate{moveItem();});
 		}
 	}
+
+    public void openMenu() {
+        if (panel == null) {
+            panel = FindObjectOfType(typeof(addButton)) as addButton;
+        }
+        panel.openMenu();
+    }
 
 	public void moveItem () {
 		if (inventory == null) {
