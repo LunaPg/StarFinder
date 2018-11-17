@@ -7,6 +7,7 @@ public class addButton : MonoBehaviour {
 
     public Text item;
     public Text amount;
+    public GameObject menuPanel;
     private ElementalInventory inventory;
 
     // Use this for initialization
@@ -15,5 +16,6 @@ public class addButton : MonoBehaviour {
             inventory = FindObjectOfType(typeof(ElementalInventory)) as ElementalInventory;
         }
         inventory.addItem(item.text, int.Parse(amount.text), new Color(Random.value / 2f, Random.value / 2f, Random.value / 2f, 1f));
+        menuPanel.SetActive(false);
 	}
 }

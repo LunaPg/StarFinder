@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 114615500216804902}
   amount: {fileID: 114504882714883670}
+  menuPanel: {fileID: 0}
 --- !u!114 &114101723711660624
 MonoBehaviour:
   m_ObjectHideFlags: 1
