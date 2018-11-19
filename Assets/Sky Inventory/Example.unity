@@ -4788,6 +4788,7 @@ MonoBehaviour:
   amount: {fileID: 1984240871}
   slider: {fileID: 1966111998}
   menuPanel: {fileID: 1188251624}
+  currentCell: {fileID: 0}
 --- !u!1 &833265776
 GameObject:
   m_ObjectHideFlags: 0

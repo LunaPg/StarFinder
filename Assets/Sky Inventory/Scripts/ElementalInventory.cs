@@ -61,8 +61,12 @@ public class ElementalInventory : MonoBehaviour {
 		choosenItem = null;
 	}
 
-	//Sets item
-	public void setItem (string name, int count, Color color, int cellId) {
+    public Cell getCell(Transform t) {
+        return t.parent.GetComponent<Cell>();
+    }
+
+    //Sets item
+    public void setItem (string name, int count, Color color, int cellId) {
 		Cells [cellId].ChangeElement (name, count, color);
 		Cells [cellId].UpdateCellInterface ();
 	}
