@@ -59,4 +59,12 @@ public class addButton : MonoBehaviour {
         amount.text = quantity.ToString();
         slider.value = quantity;
     }
+
+    public void minusAmount() {
+        slider.value -= 1;
+    }
+
+    public void plusAmount() {
+        slider.value += 1;
+    }
 }
