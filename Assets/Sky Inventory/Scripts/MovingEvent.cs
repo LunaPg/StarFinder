@@ -32,7 +32,7 @@ public class MovingEvent : MonoBehaviour {
         }
         Cell cell = inventory.getCell(transform);
         panel.currentCell = cell;
-        panel.setValues(cell.elementName, cell.elementCount);
+        panel.setValues(cell.item.elementName, cell.item.elementCount);
         panel.openMenu();
     }
 

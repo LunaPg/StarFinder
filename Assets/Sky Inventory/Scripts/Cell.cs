@@ -2,20 +2,22 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[System.Serializable]
 public class Cell : MonoBehaviour {
 
-	public string elementName; // Element Name
-	public int elementCount=1; // Element Count
-	public Color elementColor; // Element Color
-	public Transform elementTransform; //Transform Element
+    //public string elementName; // Element Name
+    //public int elementCount = 1; // Element Count
+    //public Color elementColor; // Element Color
+    public Transform elementTransform; //Transform Element
 	private GameObject elementPrefab; 
+    public item item = new item();
 
 	//Method to update UI of this cell
 	public void UpdateCellInterface () {
 		if (elementPrefab == null) {
 			elementPrefab = (FindObjectOfType (typeof(ElementalInventory)) as ElementalInventory).elementPrefab;
 		}
-		if (elementCount == 0) {
+		if (item.elementCount == 0) {
 			if (elementTransform != null) {
 				Destroy (elementTransform.gameObject);
 			}
@@ -35,23 +37,23 @@ public class Cell : MonoBehaviour {
 			Text elementText = SimpleMethods.getChildByTag (elementTransform, "elementText").GetComponent<Text> ();
 			Text amountText = SimpleMethods.getChildByTag (elementTransform, "amountText").GetComponent<Text> ();
 			//change UI options
-			bgImage.color = elementColor;
-			elementText.text = elementName;
-			amountText.text = elementCount.ToString ();
+			bgImage.color = item.elementColor;
+			elementText.text = item.elementName;
+			amountText.text = item.elementCount.ToString ();
 		}
 	}
 
 	//Change element options
 	public void ChangeElement (string name, int count, Color color) {
-		elementName = name;
-		elementCount = count;
-		elementColor = color;
+		item.elementName = name;
+		item.elementCount = count;
+        item.elementColor = color;
 		UpdateCellInterface ();
 	}
 
 	//Clear element
 	public void ClearElement () {
-		elementCount = 0;
+		item.elementCount = 0;
 		UpdateCellInterface ();
 	}
 

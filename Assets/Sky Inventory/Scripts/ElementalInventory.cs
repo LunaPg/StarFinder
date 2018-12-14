@@ -13,8 +13,8 @@ public class ElementalInventory : MonoBehaviour {
 	public bool contains (string name, int count, Color color) {
 		int inventoryCount = 0;
 		for (int i = 0; i < Cells.Length; i++) {
-			if (Cells [i].elementCount != 0 && Cells [i].elementName == name && Cells [i].elementColor == color) {
-				inventoryCount += Cells [i].elementCount;
+			if (Cells [i].item.elementCount != 0 && Cells [i].item.elementName == name && Cells [i].item.elementColor == color) {
+				inventoryCount += Cells [i].item.elementCount;
 			}
 		}
 		if (count <= inventoryCount) {
@@ -27,14 +27,14 @@ public class ElementalInventory : MonoBehaviour {
 	//Set item from link
 	public void setItemLink (string name, int count, Color color, Transform cell) {
 		Cell thisCell = cell.GetComponent<Cell> ();
-		thisCell.elementName = name;
-		thisCell.elementCount = count;
-		thisCell.elementColor = color;
+		thisCell.item.elementName = name;
+		thisCell.item.elementCount = count;
+		thisCell.item.elementColor = color;
 	}
 
 	//Moves item
 	public void moveItem (int moveFrom, int moveTo) {
-		setItem (Cells[moveFrom].elementName, Cells[moveFrom].elementCount, Cells[moveFrom].elementColor, moveTo);
+		setItem (Cells[moveFrom].item.elementName, Cells[moveFrom].item.elementCount, Cells[moveFrom].item.elementColor, moveTo);
 		setItem ("", 0, new Color(), moveFrom);
 	}
 
@@ -45,8 +45,8 @@ public class ElementalInventory : MonoBehaviour {
 			Cell moveFromCell = moveFrom.parent.GetComponent<Cell> ();
 			moveTo.GetComponent<Cell> ().elementTransform = moveFromCell.elementTransform;
 			moveFromCell.elementTransform = null;
-			setItemLink (moveFromCell.elementName, moveFromCell.elementCount, moveFromCell.elementColor, moveTo);
-			moveFromCell.elementCount = 0;
+			setItemLink (moveFromCell.item.elementName, moveFromCell.item.elementCount, moveFromCell.item.elementColor, moveTo);
+			moveFromCell.item.elementCount = 0;
 			moveFrom.parent = moveTo;
 			moveFrom.localPosition = new Vector3 ();
 		}
@@ -80,13 +80,19 @@ public class ElementalInventory : MonoBehaviour {
 		}
 	}
 
+    public void loadFromSave() {
+        for (int i = 0;  i < this.Cells.Length; i++) {
+            setItem(this.Cells[0].item.elementName, this.Cells[0].item.elementCount, this.Cells[0].item.elementColor, i);
+        }
+    }
+
 	//Returns inventory as string
 	public string convertToString () {
 		string s_Inventory = "";
 		for (int i = 0; i < Cells.Length; i++) {
-			s_Inventory += Cells[i].elementName+" ";
-			s_Inventory += Cells [i].elementCount + " ";
-			s_Inventory += SimpleMethods.colorToString (Cells[i].elementColor);
+			s_Inventory += Cells[i].item.elementName+" ";
+			s_Inventory += Cells [i].item.elementCount + " ";
+			s_Inventory += SimpleMethods.colorToString (Cells[i].item.elementColor);
 			if (i != Cells.Length) {
 				s_Inventory += "\n";
 			}
@@ -97,8 +103,8 @@ public class ElementalInventory : MonoBehaviour {
 	//Clear inventory
 	public void clear () {
 		for (int i = 0; i < Cells.Length; i++) {
-			if (Cells [i].elementCount != 0) {
-				Cells [i].elementCount = 0;
+			if (Cells [i].item.elementCount != 0) {
+				Cells [i].item.elementCount = 0;
 				Cells [i].UpdateCellInterface ();
 			}
 		}
@@ -108,32 +114,31 @@ public class ElementalInventory : MonoBehaviour {
 	public void addItem (string name, int count, Color color) {
 		int cellId = getEquals (name, color);
 		if (cellId != -1) {
-			Cells [cellId].elementCount = count;
+			Cells [cellId].item.elementCount = count;
 		} else {
 			cellId = getFirst ();
 			if (cellId == -1) {
 				return;
 			}
-			Cells [cellId].elementCount += count;
+			Cells [cellId].item.elementCount += count;
 		}
 		//Set up element count
-		if (Cells [cellId].elementCount > maxStack) {
-			int remain = Cells [cellId].elementCount - maxStack;
-			Cells [cellId].elementCount = maxStack;
+		if (Cells [cellId].item.elementCount > maxStack) {
+			int remain = Cells [cellId].item.elementCount - maxStack;
+			Cells [cellId].item.elementCount = maxStack;
 			addItem (name, remain, color);
 		} else {
-			Cells [cellId].elementCount = count;
+			Cells [cellId].item.elementCount = count;
 		}
-		Cells [cellId].elementName = name;
-		Cells [cellId].elementColor = color;
+		Cells [cellId].item.elementName = name;
+		Cells [cellId].item.elementColor = color;
 		Cells [cellId].UpdateCellInterface ();
 	}
 
 	//Returns id of first clear cell
 	public int getFirst () {
 		for (int i = 0; i < Cells.Length; i++) {
-			if (Cells [i].elementCount == 0) {
-				
+			if (Cells [i].item.elementCount == 0) {
 				return i;
 			}
 		}
@@ -143,11 +148,10 @@ public class ElementalInventory : MonoBehaviour {
 	//Returns id of first same element cell
 	public int getEquals (string name, Color color) {
 		for (int i = 0; i < Cells.Length; i++) {
-			if (Cells [i].elementCount != 0 && Cells [i].elementCount <= maxStack && Cells [i].elementName == name && Cells [i].elementColor == color) {
+			if (Cells [i].item.elementCount != 0 && Cells [i].item.elementCount <= maxStack && Cells [i].item.elementName == name && Cells [i].item.elementColor == color) {
 				return i;
 			}
 		}
 		return -1;
 	}
-
 }
