@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 
-[System.Serializable]
 public class Cell : MonoBehaviour {
 
     //public string elementName; // Element Name

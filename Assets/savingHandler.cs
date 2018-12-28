@@ -6,5 +6,8 @@ using UnityEngine;
 public class savingHandler {
 
     public static savingHandler saveData;
-    public item[] items;   
+    public item [] items = new item [31];
+
+
+
 }

@@ -39,8 +39,8 @@ public class addButton : MonoBehaviour {
         {
             inventory = FindObjectOfType(typeof(ElementalInventory)) as ElementalInventory;
         }
-        int index = inventory.getEquals(currentCell.elementName, currentCell.elementColor);
-        inventory.setItem(itemField.text, int.Parse(amount.text), currentCell.elementColor, index);
+        int index = inventory.getEquals(currentCell.item.elementName, currentCell.item.elementColor);
+        inventory.setItem(itemField.text, int.Parse(amount.text), currentCell.item.elementColor, index);
         menuPanel.SetActive(false);
     }
 
