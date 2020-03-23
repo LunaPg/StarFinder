@@ -9,6 +9,7 @@ public class ElementalInventory : MonoBehaviour {
 	public int maxStack;
 	public GameObject elementPrefab;
 	private Transform choosenItem;
+    
 
 	public bool contains (string name, int count, Color color) {
 		int inventoryCount = 0;
@@ -111,7 +112,10 @@ public class ElementalInventory : MonoBehaviour {
 	}
 
 	//Add element to inventory
-	public void addItem (string name, int count, Color color) {
+    // @todo : refactor color as string
+    // getEqual refactor : 
+	public void addItem (string name, int count,Color color) {
+     //   Color color = new Color (r, g, b, a);
 		int cellId = getEquals (name, color);
 		if (cellId != -1) {
 			Cells [cellId].item.elementCount = count;
@@ -126,12 +130,13 @@ public class ElementalInventory : MonoBehaviour {
 		if (Cells [cellId].item.elementCount > maxStack) {
 			int remain = Cells [cellId].item.elementCount - maxStack;
 			Cells [cellId].item.elementCount = maxStack;
-			addItem (name, remain, color);
+			addItem (name, remain,  color);
 		} else {
 			Cells [cellId].item.elementCount = count;
 		}
 		Cells [cellId].item.elementName = name;
-		Cells [cellId].item.elementColor = color;
+        Cells [ cellId ].color = color;
+        Cells [cellId].item.elementColor = color;
 		Cells [cellId].UpdateCellInterface ();
 	}
 
@@ -146,6 +151,7 @@ public class ElementalInventory : MonoBehaviour {
 	}
 
 	//Returns id of first same element cell
+    //Refactor color as string
 	public int getEquals (string name, Color color) {
 		for (int i = 0; i < Cells.Length; i++) {
 			if (Cells [i].item.elementCount != 0 && Cells [i].item.elementCount <= maxStack && Cells [i].item.elementName == name && Cells [i].item.elementColor == color) {

@@ -10,7 +10,10 @@ public class RandomItem : MonoBehaviour {
 			inventory = FindObjectOfType (typeof(ElementalInventory)) as ElementalInventory;
 		}
 		if (Input.GetKeyDown (KeyCode.G)) {
-			inventory.addItem (SimpleMethods.randomElement(), Random.Range(1, inventory.maxStack), new Color(Random.value/2f, Random.value/2f, Random.value/2f, 1f));
+            string randomElement = SimpleMethods.randomElement ( );
+            int randomSlot = Random.Range (1, inventory.maxStack);
+            Color randomColor = new Color (Random.value/2f, Random.value/2f, Random.value/2f, 1f);
+            inventory.addItem (randomElement, randomSlot, randomColor) ;
 		}
 		if (Input.GetKeyDown (KeyCode.C)) {
 			inventory.clear ();

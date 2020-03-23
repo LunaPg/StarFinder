@@ -10,9 +10,10 @@ public class Cell : MonoBehaviour {
     public Transform elementTransform; //Transform Element
 	private GameObject elementPrefab; 
     public item item = new item();
+    public Color color;
 
-	//Method to update UI of this cell
-	public void UpdateCellInterface () {
+    //Method to update UI of this cell
+    public void UpdateCellInterface () {
 		if (elementPrefab == null) {
 			elementPrefab = (FindObjectOfType (typeof(ElementalInventory)) as ElementalInventory).elementPrefab;
 		}
@@ -36,8 +37,9 @@ public class Cell : MonoBehaviour {
 			Text elementText = SimpleMethods.getChildByTag (elementTransform, "elementText").GetComponent<Text> ();
 			Text amountText = SimpleMethods.getChildByTag (elementTransform, "amountText").GetComponent<Text> ();
 			//change UI options
-			bgImage.color = item.elementColor;
-			elementText.text = item.elementName;
+			bgImage.color = this.color;
+            item.elementColor=this.color;
+            elementText.text = item.elementName;
 			amountText.text = item.elementCount.ToString ();
 		}
 	}
@@ -46,6 +48,7 @@ public class Cell : MonoBehaviour {
 	public void ChangeElement (string name, int count, Color color) {
 		item.elementName = name;
 		item.elementCount = count;
+        this.color=color;
         item.elementColor = color;
 		UpdateCellInterface ();
 	}
@@ -56,4 +59,7 @@ public class Cell : MonoBehaviour {
 		UpdateCellInterface ();
 	}
 
+    public void setColor(float r, float g, float b, float a = 1f) {
+       this.color =  new Color (r/2f, Random.value/2f, Random.value/2f, a);
+    }
 }

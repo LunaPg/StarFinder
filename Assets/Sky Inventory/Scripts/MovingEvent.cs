@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class MovingEvent : MonoBehaviour {
 
@@ -17,23 +18,36 @@ public class MovingEvent : MonoBehaviour {
         }
 	}
 
-    public void openMenu() {
-        if (panel == null) {
-            panel = FindObjectOfType(typeof(addButton)) as addButton;
+    private addButton getPanel() {
+        addButton panel = FindObjectOfType (typeof (addButton)) as addButton;
+        if ( panel==null ) {
+            throw new Exception ("Pannel is not found");
         }
-        panel.clean();
-        panel.openMenu();
+        return panel;
+}
+
+    public void openMenu() {
+        if (this.panel == null) {
+            this.panel = FindObjectOfType(typeof(addButton)) as addButton;
+        }
+
+       this. panel.clean();
+        this.panel.openMenu();
     }
 
     public void modifyItem() {
-        if (panel == null)
+        if (this.panel == null)
         {
-            panel = FindObjectOfType(typeof(addButton)) as addButton;
+            this.panel=this.getPanel ( );
         }
+        print (transform);
         Cell cell = inventory.getCell(transform);
-        panel.currentCell = cell;
-        panel.setValues(cell.item.elementName, cell.item.elementCount);
-        panel.openMenu();
+        if ( cell==null ) {
+            throw new Exception ("Cannot modify item, Cell has not been found !");
+        }
+       this. panel.currentCell = cell;
+        this.panel.setValues(cell.item.elementName, cell.item.elementCount);
+       this. panel.openMenu();
     }
 
 	public void moveItem () {

@@ -6,5 +6,6 @@ using UnityEngine;
 public class item  {
     public string elementName; // Element Name
     public int elementCount = 0; // Element Count
-    public Color elementColor; // Element Color
+    public Color  elementColor; // Element Color
+
 }

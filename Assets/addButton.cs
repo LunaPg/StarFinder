@@ -28,7 +28,8 @@ public class addButton : MonoBehaviour {
         if(inventory == null) {
             inventory = FindObjectOfType(typeof(ElementalInventory)) as ElementalInventory;
         }
-        inventory.addItem(itemField.text, int.Parse(amount.text), new Color(Random.value / 2f, Random.value / 2f, Random.value / 2f, 1f));
+        Color color = new Color ( Random.value/2f, Random.value/2f, Random.value/2);
+        inventory.addItem(itemField.text, int.Parse(amount.text), color);
         menuPanel.SetActive(false);
 	}
 
