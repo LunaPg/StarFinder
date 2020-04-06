@@ -8,21 +8,22 @@ using System.IO;
 public class loadSaves : MonoBehaviour
 {
     public ElementalInventory inventory;
+    public savingHandler savingHandler;
+    public cellData cellData;
+    public Cell [] cells ;
 
-    public savingHandler saveSetup() {
-        inventory = FindObjectOfType(typeof(ElementalInventory)) as ElementalInventory;
-        savingHandler save = new savingHandler();
-        for ( int i = 0 ; i<inventory.Cells.Length ; i++ )
-        {
-            save.items [ i ] = inventory.Cells [ i ].item;
-        }
-        // save.cells = inventory.Cells;
-        // Saving items
-        // getting item to cell objet.
+ 
 
-        return save;
+    public void   save() {
+        cellData=ScriptableObject.CreateInstance<cellData>();
+        // this.savingHandler.saveInventory ( );
+        this.cellData.save (inventory.Cells );
     }
 
+    public void load() {
+        this.savingHandler.loadInventory ( );
+    }
+    /**
     public void save() {
         savingHandler saveData = saveSetup();
         // Creattig buffer, and save in file
@@ -53,7 +54,7 @@ public class loadSaves : MonoBehaviour
             Debug.Log("T'as pas de game Jean Michel !");
         }
     }
-
+    **/
     protected void reconstruct(item[] items) {
         if ( items.Length!=inventory.Cells.Length )
         {

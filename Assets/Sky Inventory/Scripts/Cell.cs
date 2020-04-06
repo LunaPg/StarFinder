@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+[System.Serializable]
+
 
 public class Cell : MonoBehaviour {
 
@@ -11,6 +13,7 @@ public class Cell : MonoBehaviour {
 	private GameObject elementPrefab; 
     public item item = new item();
     public Color color;
+
 
     //Method to update UI of this cell
     public void UpdateCellInterface () {

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class ElementalInventory : MonoBehaviour {
 
-	//Cell massive
+	//SaveCell massive
 	public Cell[] Cells;
 	//Max element stack
 	public int maxStack;
@@ -72,6 +73,10 @@ public class ElementalInventory : MonoBehaviour {
 		Cells [cellId].UpdateCellInterface ();
 	}
 
+    public void save() {    
+        // set all data of CellData and save as json
+    }
+
 	//Loads inventory from string
 	public void loadFromString (string s_Inventory) {
 		string[] splitedInventory = s_Inventory.Split ("\n"[0]);
@@ -116,6 +121,8 @@ public class ElementalInventory : MonoBehaviour {
     // getEqual refactor : 
 	public void addItem (string name, int count,Color color) {
      //   Color color = new Color (r, g, b, a);
+     // get equal search for same object in item arraym useless.
+     // should only ref by id
 		int cellId = getEquals (name, color);
 		if (cellId != -1) {
 			Cells [cellId].item.elementCount = count;

@@ -14,7 +14,7 @@ public class addButton : MonoBehaviour {
 
 
     public void  upsert() {
-        if (currentCell != null)
+        if (this.currentCell != null)
         {
             putItem();
         }
@@ -40,8 +40,8 @@ public class addButton : MonoBehaviour {
         {
             inventory = FindObjectOfType(typeof(ElementalInventory)) as ElementalInventory;
         }
-        int index = inventory.getEquals(currentCell.item.elementName, currentCell.item.elementColor);
-        inventory.setItem(itemField.text, int.Parse(amount.text), currentCell.item.elementColor, index);
+        int index = inventory.getEquals(this.currentCell.item.elementName,this. currentCell.item.elementColor);
+        inventory.setItem(itemField.text, int.Parse(amount.text), this.currentCell.item.elementColor, index);
         menuPanel.SetActive(false);
     }
 

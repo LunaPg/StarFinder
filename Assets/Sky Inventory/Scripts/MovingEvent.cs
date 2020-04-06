@@ -9,7 +9,7 @@ public class MovingEvent : MonoBehaviour {
     private addButton panel;
 
 	void Start () {
-		if (transform.tag == "Cell") {
+		if (transform.tag == "SaveCell") {
             GetComponent<Button>().onClick.AddListener(delegate { openMenu(); });
             //GetComponent<Button> ().onClick.AddListener (delegate{moveHere();});
         } else {
@@ -43,7 +43,7 @@ public class MovingEvent : MonoBehaviour {
         print (transform);
         Cell cell = inventory.getCell(transform);
         if ( cell==null ) {
-            throw new Exception ("Cannot modify item, Cell has not been found !");
+            throw new Exception ("Cannot modify item, SaveCell has not been found !");
         }
        this. panel.currentCell = cell;
         this.panel.setValues(cell.item.elementName, cell.item.elementCount);

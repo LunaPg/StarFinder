@@ -1952,6 +1952,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 883403854}
+  savingHandler:
+    cellData: {fileID: 0}
+    inventory: {fileID: 883403854}
+  cellData: {fileID: 0}
+  cells: []
 --- !u!224 &315034522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3705,6 +3710,7 @@ GameObject:
   - component: {fileID: 549486710}
   - component: {fileID: 549486709}
   - component: {fileID: 549486708}
+  - component: {fileID: 549486711}
   m_Layer: 5
   m_Name: Save
   m_TagString: Untagged
@@ -3822,6 +3828,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549486706}
   m_CullTransparentMesh: 0
+--- !u!114 &549486711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549486706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a13d79ad16d28c4faf99c2ebacab535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 883403854}
+  savingHandler:
+    cellData: {fileID: 0}
+    inventory: {fileID: 0}
+  cellData: {fileID: 0}
+  cells:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &549631663
 GameObject:
   m_ObjectHideFlags: 0
@@ -8510,12 +8565,12 @@ PrefabInstance:
     - target: {fileID: 224226329404341294, guid: c3ca1a971b3cffb4cbb7c29a0cdceb34,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224714411516662162, guid: c3ca1a971b3cffb4cbb7c29a0cdceb34,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3ca1a971b3cffb4cbb7c29a0cdceb34, type: 3}
