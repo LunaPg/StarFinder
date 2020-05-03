@@ -12,16 +12,14 @@ public class loadSaves : MonoBehaviour
     public cellData cellData;
     public Cell [] cells ;
 
- 
-
-    public void   save() {
+    public void save() {
         cellData=ScriptableObject.CreateInstance<cellData>();
         // this.savingHandler.saveInventory ( );
         this.cellData.save (inventory.Cells );
     }
 
     public void load() {
-        this.savingHandler.loadInventory ( );
+       cells =  this.cellData.load ( );
     }
     /**
     public void save() {

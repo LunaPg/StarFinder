@@ -1009,3 +1009,5 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d5a95397a7df84da33e5fc548f9d53, type: 3}
+
+    m_SelectedTrigger: Selected
